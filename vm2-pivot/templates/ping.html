@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NetDiag — Ping Tool</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Courier New", monospace;
+        background: #0f0f0f;
+        color: #c8c8c8;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        width: 100%;
+        max-width: 640px;
+        padding: 2rem;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #00ff88;
+        letter-spacing: 4px;
+        margin-bottom: 0.25rem;
+      }
+      .subtitle {
+        font-size: 0.75rem;
+        color: #555;
+        letter-spacing: 2px;
+        margin-bottom: 3rem;
+      }
+      .back {
+        font-size: 0.75rem;
+        color: #555;
+        text-decoration: none;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+      }
+      .back:hover {
+        color: #00ff88;
+      }
+      .card {
+        background: #161616;
+        border: 1px solid #2a2a2a;
+        border-radius: 4px;
+        padding: 2rem;
+      }
+      .card h2 {
+        font-size: 0.85rem;
+        color: #888;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+      label {
+        font-size: 0.75rem;
+        color: #666;
+        letter-spacing: 1px;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      input[type="text"] {
+        width: 100%;
+        background: #0a0a0a;
+        border: 1px solid #2a2a2a;
+        border-radius: 3px;
+        padding: 0.75rem 1rem;
+        color: #c8c8c8;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      input[type="text"]:focus {
+        border-color: #00ff88;
+      }
+      button {
+        background: #00ff88;
+        color: #0a0a0a;
+        border: none;
+        padding: 0.75rem 2rem;
+        font-family: "Courier New", monospace;
+        font-size: 0.85rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #00cc6a;
+      }
+      .output-box {
+        margin-top: 1.5rem;
+        background: #0a0a0a;
+        border: 1px solid #2a2a2a;
+        border-radius: 3px;
+        padding: 1rem;
+      }
+      .output-label {
+        font-size: 0.7rem;
+        color: #444;
+        letter-spacing: 2px;
+        margin-bottom: 0.75rem;
+      }
+      pre {
+        font-size: 0.8rem;
+        color: #00ff88;
+        white-space: pre-wrap;
+        word-break: break-all;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">NETDIAG</div>
+      <div class="subtitle">PING TOOL</div>
+
+      <a class="back" href="/">← back to tools</a>
+
+      <div class="card">
+        <h2>Ping a Host</h2>
+        <form method="POST" action="/ping">
+          <label for="target">TARGET HOST OR IP</label>
+          <input
+            type="text"
+            id="target"
+            name="target"
+            placeholder="e.g. 192.168.1.1 or google.com"
+            value="{{ target }}"
+            autocomplete="off"
+          />
+          <button type="submit">RUN PING</button>
+        </form>
+
+        {% if output %}
+        <div class="output-box">
+          <div class="output-label">OUTPUT</div>
+          <pre>{{ output }}</pre>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

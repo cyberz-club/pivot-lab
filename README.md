@@ -50,23 +50,6 @@ vagrant halt
 vagrant destroy -f
 ```
 
-## File Structure
-
-```
-pivot-lab/
-├── Vagrantfile
-├── ATTACK_CHEATSHEET.md   ← step-by-step demo commands
-├── vm2-pivot/
-│   ├── app.py             ← vulnerable Flask app (command injection)
-│   └── templates/
-│       ├── index.html
-│       └── ping.html
-└── vm3-target/
-    ├── internal_app.py    ← internal secret Flask app
-    └── templates/
-        └── secret.html    ← the "prize" page with the flag
-```
-
 ## The Exploit
 
 The Flask app on the pivot machine has an intentional command injection

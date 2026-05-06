@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NetDiag — Network Diagnostics Suite</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Courier New", monospace;
+        background: #0f0f0f;
+        color: #c8c8c8;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        width: 100%;
+        max-width: 640px;
+        padding: 2rem;
+      }
+      .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #00ff88;
+        letter-spacing: 4px;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+      .subtitle {
+        font-size: 0.75rem;
+        color: #555;
+        letter-spacing: 2px;
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+      .card {
+        background: #161616;
+        border: 1px solid #2a2a2a;
+        border-radius: 4px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+      }
+      .card h2 {
+        font-size: 0.85rem;
+        color: #888;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      .tool-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .tool-btn {
+        background: #0a0a0a;
+        border: 1px solid #2a2a2a;
+        color: #00ff88;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: left;
+      }
+      .tool-btn:hover {
+        background: #00ff88;
+        color: #0a0a0a;
+        border-color: #00ff88;
+      }
+      .tool-description {
+        font-size: 0.7rem;
+        color: #666;
+        margin-top: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">NETDIAG</div>
+      <div class="subtitle">NETWORK DIAGNOSTICS SUITE</div>
+
+      <div class="card">
+        <h2>Available Tools</h2>
+        <div class="tool-list">
+          <a href="/ping" class="tool-btn">
+            🔍 PING
+            <div class="tool-description">
+              Test network connectivity to hosts
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="card" style="font-size: 0.75rem; color: #666">
+        <strong>v1.0</strong> &mdash; Network diagnostics utility for system
+        administration
+      </div>
+    </div>
+  </body>
+</html>
