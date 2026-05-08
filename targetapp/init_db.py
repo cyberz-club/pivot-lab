@@ -4,6 +4,7 @@ import sqlite3
 
 DB_PATH = '/opt/targetapp/target.db'
 
+
 def init_db():
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
@@ -23,10 +24,13 @@ def init_db():
     ''')
     cur.execute('DELETE FROM users')
     cur.execute('DELETE FROM flags')
-    cur.execute('INSERT INTO users (username, password) VALUES (?, ?)', ('admin', 'supersecret'))
-    cur.execute('INSERT INTO flags (value) VALUES (?)', ('CTF{pivot_master_2024}',))
+    cur.execute('INSERT INTO users (username, password) VALUES (?, ?)',
+                ('admin', 'supersecret'))
+    cur.execute('INSERT INTO flags (value) VALUES (?)',
+                ('CyberZ{reached_the_target}',))
     conn.commit()
     conn.close()
+
 
 if __name__ == '__main__':
     init_db()
