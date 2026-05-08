@@ -42,3 +42,7 @@ def cmd():
     except subprocess.CalledProcessError as exc:
         output = exc.output or str(exc)
     return Response(output, mimetype='text/plain')
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
